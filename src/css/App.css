@@ -1,0 +1,240 @@
+/* App.css */
+
+/* 1. تصفير الإعدادات */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #212121;
+  --input-bg: #2f2f2f;
+  --text-main: #ececec;
+  --text-secondary: #b4b4b4;
+  --border-color: #424242;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* 2. الهيدر وتأثير الأزرار العكسي */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: var(--bg-color);
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-login {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-login:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.btn-signup {
+  background-color: transparent;
+  color: white;
+  border: 1px solid var(--border-color);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-signup:hover {
+  background-color: white;
+  color: black;
+}
+
+/* 3. منطقة الرسائل */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.messages-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.message-container {
+  display: flex;
+  gap: 15px;
+}
+
+.message-container.user {
+  flex-direction: row-reverse;
+}
+
+.message-bubble {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 18px;
+  background: var(--input-bg);
+  line-height: 1.5;
+  position: relative;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.message-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+}
+
+.user .message-bubble {
+  background: #3d3d3d;
+  border-bottom-right-radius: 4px;
+}
+
+.user .message-bubble::after {
+  right: -8px;
+  border-left-color: #3d3d3d;
+  border-top-color: #3d3d3d;
+  border-bottom-color: #3d3d3d;
+}
+
+.bot .message-bubble {
+  background: #3d3d3d;
+  border-bottom-left-radius: 4px;
+}
+
+.bot .message-bubble::after {
+  left: -8px;
+  border-right-color: #3d3d3d;
+  border-top-color: #3d3d3d;
+  border-bottom-color: #3d3d3d;
+}
+
+/* WhatsApp-style message bubbles */
+.message-bubble.bot {
+  margin-left: 0;
+  margin-right: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 4px;
+}
+
+.message-bubble.user {
+  margin-left: auto;
+  margin-right: 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 4px;
+}
+
+/* 4. منطقة الإدخال */
+.input-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 20px 40px 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 16px 50px 16px 20px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.send-icon {
+  position: absolute;
+  right: 12px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .message-bubble {
+    max-width: 85%;
+  }
+  
+  .message-container.user {
+    flex-direction: row;
+  }
+  
+  .message-bubble.user {
+    border-bottom-right-radius: 4px;
+  }
+  
+  .message-bubble.bot {
+    border-bottom-left-radius: 4px;
+  }
+}
